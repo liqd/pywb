@@ -70,6 +70,8 @@ class UrlRewriter(object):
         wburl = self.wburl
 
         is_abs = url.startswith(self.PROTOCOLS)
+        if self.rewrite_opts.get('rewriteList', False) and is_abs and not url.startswith(tuple(self.rewrite_opts['rewriteList'])):
+            return url
 
         scheme_rel = False
         if url.startswith(self.REL_SCHEME):

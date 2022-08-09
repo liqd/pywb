@@ -401,7 +401,8 @@ class RewriterApp(object):
                                       full_prefix=full_prefix,
                                       rel_prefix=rel_prefix,
                                       pywb_static_prefix=pywb_static_prefix)
-
+            if self.config.get('rewrite_list', False):
+                urlrewriter.rewrite_opts['rewriteList'] = self.config['rewrite_list']
             framed_replay = self.framed_replay
 
         url_parts = urlsplit(wb_url.url)
